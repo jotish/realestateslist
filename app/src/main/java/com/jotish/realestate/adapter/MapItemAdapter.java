@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.jotish.realestate.R;
 import com.jotish.realestate.data.Item;
 import com.jotish.realestate.databinding.MapItemLayoutBinding;
+import com.jotish.realestate.view.OnPlaceSelectedListener;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,16 +16,17 @@ import java.util.List;
 public class MapItemAdapter extends RecyclerView.Adapter<MapItemViewHolder> {
 
   private List<Item> mItems;
-
-  public MapItemAdapter() {
+  private OnPlaceSelectedListener mOnPlaceSelectedListener;
+  public MapItemAdapter(OnPlaceSelectedListener onPlaceSelectedListener) {
     this.mItems = Collections.emptyList();
+    mOnPlaceSelectedListener = onPlaceSelectedListener;
   }
 
   @Override public MapItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     MapItemLayoutBinding mapItemLayoutBinding =
         DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.map_item_layout,
             parent, false);
-    return new MapItemViewHolder(mapItemLayoutBinding);
+    return new MapItemViewHolder(mapItemLayoutBinding, mOnPlaceSelectedListener);
   }
 
   @Override public void onBindViewHolder(MapItemViewHolder holder, int position) {

@@ -4,21 +4,27 @@ import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.BindingAdapter;
 import android.graphics.drawable.Drawable;
+import android.view.View;
 import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.jotish.realestate.R;
 import com.jotish.realestate.data.Item;
+import com.jotish.realestate.transitions.TransitionUtils;
+import com.jotish.realestate.view.OnPlaceSelectedListener;
 
 public class MapItemViewModel extends BaseObservable{
 
   private Context mContext;
   private Item mItem;
   private int mPosition;
+  private OnPlaceSelectedListener mOnPlaceSelectedListener;
 
-  public MapItemViewModel(Context context, Item item, int position) {
+  public MapItemViewModel(Context context, Item item, int position,
+      OnPlaceSelectedListener onPlaceSelectedListener) {
     mContext = context;
     mItem = item;
     mPosition = position;
+    mOnPlaceSelectedListener = onPlaceSelectedListener;
   }
 
   public String getItemName() {
@@ -64,5 +70,10 @@ public class MapItemViewModel extends BaseObservable{
     this.mItem = item;
     this.mPosition = position;
     notifyChange();
+  }
+
+  public void onItemClick(View view){
+    mOnPlaceSelectedListener.onPlaceClicked(view,
+        TransitionUtils.getRecyclerViewTransitionName(mPosition), mPosition, mItem);
   }
 }

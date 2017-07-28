@@ -16,6 +16,7 @@
     android:layout_marginRight="@dimen/padding_tiny"
     android:clipChildren="false"
     android:clipToPadding="false"
+    android:onClick="@{mapItemViewModel::onItemClick}"
     android:orientation="vertical">
 
     <LinearLayout

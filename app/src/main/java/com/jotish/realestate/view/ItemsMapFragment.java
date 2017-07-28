@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Scene;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,15 +32,18 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class ItemsMapFragment extends Fragment implements OnMapReadyCallback, Observer,
-    HorizontalRecyclerViewScrollListener.OnItemCoverListener {
+    HorizontalRecyclerViewScrollListener.OnItemCoverListener, OnPlaceSelectedListener {
 
   private FragmentMapViewModel mItemMapViewModel;
   private FragmentItemMapBinding mFragmentItemMapBinding;
   private FragmentActivity mContext;
+  private String currentTransitionName;
+  private Scene detailsScene;
 
   public static ItemsMapFragment newInstance(final Context context) {
     ItemsMapFragment fragment = new ItemsMapFragment();
-    ScaleDownImageTransition transition = new ScaleDownImageTransition(context, MapBitmapCache.instance().getBitmap());
+    ScaleDownImageTransition transition =
+        new ScaleDownImageTransition(context, MapBitmapCache.instance().getBitmap());
     transition.addTarget(context.getString(R.string.mapPlaceholderTransition));
     transition.setDuration(600);
     fragment.setEnterTransition(transition);
@@ -63,7 +67,7 @@ public class ItemsMapFragment extends Fragment implements OnMapReadyCallback, Ob
         container,false);
     mItemMapViewModel = new FragmentMapViewModel(mContext);
     mFragmentItemMapBinding.setItemMapViewModel(mItemMapViewModel);
-    setupItemsView(mFragmentItemMapBinding.recyclerview);
+    setupItemsView(mFragmentItemMapBinding.recyclerview, this);
     mItemMapViewModel.init();
     setupMapFragment();
     setupObserver(mItemMapViewModel);
@@ -74,15 +78,17 @@ public class ItemsMapFragment extends Fragment implements OnMapReadyCallback, Ob
     observable.addObserver(this);
   }
 
-  private void setupItemsView(RecyclerView listRecyler) {
-    MapItemAdapter adapter = new MapItemAdapter();
-    listRecyler.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+  private void setupItemsView(RecyclerView listRecyler, OnPlaceSelectedListener onPlaceSelectedListener) {
+    MapItemAdapter adapter = new MapItemAdapter(onPlaceSelectedListener);
+    listRecyler.setLayoutManager(
+        new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
     listRecyler.setAdapter(adapter);
     listRecyler.addOnScrollListener(new HorizontalRecyclerViewScrollListener(this));
   }
 
   private void setupMapFragment() {
-    ((SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.mapFragment)).getMapAsync(this);
+    ((SupportMapFragment)getChildFragmentManager()
+        .findFragmentById(R.id.mapFragment)).getMapAsync(this);
   }
 
   @Override
@@ -116,6 +122,11 @@ public class ItemsMapFragment extends Fragment implements OnMapReadyCallback, Ob
     });
   }
 
+  private void hideAllMarkers() {
+    mFragmentItemMapBinding.mapOverlayLayout.setOnCameraIdleListener(null);
+    mFragmentItemMapBinding.mapOverlayLayout.hideAllMarkers();
+  }
+
   @Override
   public void update(final Observable observable, final Object o) {
     if (observable instanceof FragmentMapViewModel) {
@@ -131,5 +142,15 @@ public class ItemsMapFragment extends Fragment implements OnMapReadyCallback, Ob
   @Override
   public void onItemCover(final int position) {
     mFragmentItemMapBinding.mapOverlayLayout.showMarker(position);
+  }
+
+  @Override
+  public void onPlaceClicked(final View sharedView, final String transitionName,
+      final int position, Item place) {
+    currentTransitionName = transitionName;
+    detailsScene = DetailsLayout.showScene(getActivity(),
+        mFragmentItemMapBinding.dataContainer, sharedView, transitionName, place);
+    //drawRoute(position);
+    hideAllMarkers();
   }
 }

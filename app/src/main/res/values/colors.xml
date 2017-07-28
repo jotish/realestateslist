@@ -18,5 +18,5 @@
   <color name="redDark">#C73435</color>
   <color name="greenLight">#58BA40</color>
 
-
+  <color name="place_details_background">#1e000000</color>
 </resources>
