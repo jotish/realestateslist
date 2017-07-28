@@ -21,5 +21,21 @@
   <style name="Text.Medium.Bold" parent="Base.TextAppearance.AppCompat.Medium">
     <item name="android:textStyle">bold</item>
   </style>
+  <style name="Text.Small" parent="Base.TextAppearance.AppCompat.Small">
+  </style>
+  <style name="Text.Small.Bold" parent="Base.TextAppearance.AppCompat.Small">
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="Text.Tiny" parent="Base.TextAppearance.AppCompat.Small">
+    <item name="android:textSize">12sp</item>
+  </style>
+  <style name="Text.Tiny.Bold" parent="Text.Tiny">
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="Text.Micro" parent="Base.TextAppearance.AppCompat.Small">
+    <item name="android:textSize">8sp</item>
+  </style>
 
 </resources>

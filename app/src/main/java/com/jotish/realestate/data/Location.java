@@ -1,5 +1,7 @@
 package com.jotish.realestate.data;
 
+import com.google.android.gms.maps.model.LatLng;
+
 /**
  * Created by jotishsuthar on 27/07/17.
  */
@@ -46,5 +48,9 @@ public class Location
   public String toString()
   {
     return "ClassPojo [address = "+address+", longitude = "+longitude+", latitude = "+latitude+"]";
+  }
+
+  public LatLng getLatLng() {
+    return new LatLng(Double.valueOf(latitude), Double.valueOf(longitude));
   }
 }

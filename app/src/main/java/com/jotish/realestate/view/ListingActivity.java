@@ -10,12 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import com.jotish.realestate.R;
 import com.jotish.realestate.databinding.ActivityListingBinding;
-import com.jotish.realestate.viewmodel.ListingViewModel;
+import com.jotish.realestate.viewmodel.ActivityListingViewModel;
 
 public class ListingActivity extends AppCompatActivity {
 
   private ActivityListingBinding mActivityListingBinding;
-  private ListingViewModel mListingViewModel;
+  private ActivityListingViewModel mListingViewModel;
   private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
       = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -26,6 +26,7 @@ public class ListingActivity extends AppCompatActivity {
           loadListingFragment();
           return true;
         case R.id.navigation_map:
+          loadListingMapFragment();
           return true;
       }
       return false;
@@ -47,7 +48,7 @@ public class ListingActivity extends AppCompatActivity {
   private void initDataBinding() {
     mActivityListingBinding = DataBindingUtil.setContentView(this, R.layout
         .activity_listing);
-    mListingViewModel = new ListingViewModel(this);
+    mListingViewModel = new ActivityListingViewModel(this);
     mActivityListingBinding.setListingViewModel(mListingViewModel);
   }
 
@@ -56,7 +57,19 @@ public class ListingActivity extends AppCompatActivity {
     if (currentFragment == null || !(currentFragment instanceof  ItemsListFragment)) {
       ItemsListFragment listingsFragment = ItemsListFragment.newInstance();
       FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+      transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
       transaction.replace(R.id.content_fragment, listingsFragment, listingsFragment.getTag());
+      transaction.commit();
+    }
+  }
+
+  private void loadListingMapFragment() {
+    Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.content_fragment);
+    if (currentFragment == null || !(currentFragment instanceof  ItemsMapFragment)) {
+      ItemsMapFragment itemsMapFragment = ItemsMapFragment.newInstance(this);
+      FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+      transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+      transaction.replace(R.id.content_fragment, itemsMapFragment, itemsMapFragment.getTag());
       transaction.commit();
     }
   }

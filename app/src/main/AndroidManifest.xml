@@ -11,6 +11,10 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
 
+    <uses-library android:name="com.google.android.maps" />
+    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDkrYpggoBAAeXC9r-k8dibU1buPCD8q_M"/>
+
+
     <activity
       android:name=".view.ListingActivity"
       android:theme="@style/AppTheme">

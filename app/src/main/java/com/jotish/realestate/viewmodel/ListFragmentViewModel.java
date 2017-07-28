@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-public class ItemListViewModel extends Observable {
+public class ListFragmentViewModel extends Observable {
 
   private Context mContext;
   public ObservableInt listProgress;
@@ -27,7 +27,7 @@ public class ItemListViewModel extends Observable {
   private CompositeDisposable compositeDisposable = new CompositeDisposable();
   private List<Item> mProperties;
 
-  public ItemListViewModel(@NonNull Context context) {
+  public ListFragmentViewModel(@NonNull Context context) {
     mContext = context;
     mProperties = new ArrayList<>();
     listProgress = new ObservableInt(View.GONE);

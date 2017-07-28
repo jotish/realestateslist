@@ -5,7 +5,7 @@
   <data>
     <variable
       name="listingViewModel"
-      type="com.jotish.realestate.viewmodel.ListingViewModel"/>
+      type="com.jotish.realestate.viewmodel.ActivityListingViewModel"/>
   </data>
 
   <LinearLayout

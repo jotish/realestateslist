@@ -4,10 +4,10 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import java.util.Observable;
 
-public class ListingViewModel extends Observable {
+public class ActivityListingViewModel extends Observable {
   private Context mContext;
 
-  public ListingViewModel(@NonNull Context context) {
+  public ActivityListingViewModel(@NonNull Context context) {
     mContext = context;
   }
 }

@@ -11,13 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.jotish.realestate.adapter.ItemAdapter;
 import com.jotish.realestate.databinding.FragmentItemListBinding;
-import com.jotish.realestate.viewmodel.ItemListViewModel;
+import com.jotish.realestate.viewmodel.ListFragmentViewModel;
 import java.util.Observable;
 import java.util.Observer;
 
 public class ItemsListFragment extends Fragment  implements Observer{
 
-  private ItemListViewModel mItemListViewModel;
+  private ListFragmentViewModel mItemListViewModel;
   private FragmentItemListBinding mFragmentItemListBinding;
   private FragmentActivity mContext;
 
@@ -40,7 +40,7 @@ public class ItemsListFragment extends Fragment  implements Observer{
       @Nullable final Bundle savedInstanceState) {
     mFragmentItemListBinding = FragmentItemListBinding.inflate(inflater,
         container,false);
-    mItemListViewModel = new ItemListViewModel(mContext);
+    mItemListViewModel = new ListFragmentViewModel(mContext);
     mFragmentItemListBinding.setItemListViewModel(mItemListViewModel);
     setupItemsView(mFragmentItemListBinding.itemsRecyler);
     setupObserver(mItemListViewModel);
@@ -64,10 +64,10 @@ public class ItemsListFragment extends Fragment  implements Observer{
   }
   @Override
   public void update(Observable observable, Object data) {
-    if (observable instanceof ItemListViewModel) {
+    if (observable instanceof ListFragmentViewModel) {
       ItemAdapter adapter = (ItemAdapter)
           mFragmentItemListBinding.itemsRecyler.getAdapter();
-      ItemListViewModel itemListViewModel = (ItemListViewModel) observable;
+      ListFragmentViewModel itemListViewModel = (ListFragmentViewModel) observable;
       adapter.setItems(itemListViewModel.getProperties());
     }
   }

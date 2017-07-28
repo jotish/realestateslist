@@ -1,7 +1,8 @@
 <resources>
   <string name="app_name">Real estate</string>
   <string name="lists">List</string>
-  <string name="navigate">Navigate</string>
+  <string name="map">Map</string>
   <string name="retail_rice">%1$s %2$s</string>
   <string name="error_network">Please check your internet connection!</string>
+  <string name="mapPlaceholderTransition">mapPlaceholderTransition</string>
 </resources>

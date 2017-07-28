@@ -7,7 +7,7 @@
   <data>
     <variable
       name="itemListViewModel"
-      type="com.jotish.realestate.viewmodel.ItemListViewModel"/>
+      type="com.jotish.realestate.viewmodel.ListFragmentViewModel"/>
   </data>
 
   <LinearLayout
