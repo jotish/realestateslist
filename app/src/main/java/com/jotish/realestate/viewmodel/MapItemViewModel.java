@@ -4,15 +4,10 @@ import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.BindingAdapter;
 import android.graphics.drawable.Drawable;
-import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.jotish.realestate.R;
-import com.jotish.realestate.adapter.GalleryAdapter;
-import com.jotish.realestate.adapter.OnImageClickListener;
 import com.jotish.realestate.data.Item;
-import com.jotish.realestate.ui.AutoScrollViewPager;
-import com.jotish.realestate.ui.CirclePageIndicator;
 
 public class MapItemViewModel extends BaseObservable{
 

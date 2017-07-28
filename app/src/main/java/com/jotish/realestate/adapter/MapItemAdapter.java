@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import com.jotish.realestate.R;
 import com.jotish.realestate.data.Item;
-import com.jotish.realestate.databinding.ItemLayoutBinding;
 import com.jotish.realestate.databinding.MapItemLayoutBinding;
 import java.util.Collections;
 import java.util.List;

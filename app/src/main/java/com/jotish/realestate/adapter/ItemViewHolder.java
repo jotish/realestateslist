@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import com.jotish.realestate.data.Item;
 import com.jotish.realestate.databinding.ItemLayoutBinding;
-import com.jotish.realestate.ui.AutoScrollViewPager;
 import com.jotish.realestate.viewmodel.ItemViewModel;
 
 public class ItemViewHolder extends RecyclerView.ViewHolder implements OnImageClickListener,

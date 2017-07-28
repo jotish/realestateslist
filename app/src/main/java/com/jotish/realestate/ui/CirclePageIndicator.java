@@ -14,9 +14,11 @@ package com.jotish.realestate.ui;/*
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import static android.graphics.Paint.ANTI_ALIAS_FLAG;
 import static android.widget.LinearLayout.HORIZONTAL;
 import static android.widget.LinearLayout.VERTICAL;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
