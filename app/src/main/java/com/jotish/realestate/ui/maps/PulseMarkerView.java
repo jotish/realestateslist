@@ -46,7 +46,7 @@ public class PulseMarkerView extends MarkerView {
 
     public PulseMarkerView(final Context context, final LatLng latLng, final Point point, final int position) {
         this(context, latLng, point);
-        text = String.valueOf(position);
+        text = String.valueOf(position + 1);
     }
 
     private void setupHideAnimatorSet() {

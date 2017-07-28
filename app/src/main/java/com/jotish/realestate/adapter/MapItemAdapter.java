@@ -29,7 +29,7 @@ public class MapItemAdapter extends RecyclerView.Adapter<MapItemViewHolder> {
   }
 
   @Override public void onBindViewHolder(MapItemViewHolder holder, int position) {
-    holder.bindItem(mItems.get(position));
+    holder.bindItem(mItems.get(position), position);
   }
 
   @Override public int getItemCount() {

@@ -18,12 +18,12 @@ public class MapItemViewHolder extends RecyclerView.ViewHolder {
     this.mMapItemLayoutBinding = itemBinding;
   }
 
-  public void bindItem(Item item) {
+  public void bindItem(Item item, int position) {
     if (mMapItemLayoutBinding.getMapItemViewModel() == null) {
       mMapItemLayoutBinding.setMapItemViewModel(
-          new MapItemViewModel(itemView.getContext(),item));
+          new MapItemViewModel(itemView.getContext(),item , position));
     } else {
-      mMapItemLayoutBinding.getMapItemViewModel().setItem(item);
+      mMapItemLayoutBinding.getMapItemViewModel().setItemAndPosition(item, position);
     }
   }
 }

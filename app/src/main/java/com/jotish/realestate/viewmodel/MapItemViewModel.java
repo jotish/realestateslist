@@ -18,10 +18,12 @@ public class MapItemViewModel extends BaseObservable{
 
   private Context mContext;
   private Item mItem;
+  private int mPosition;
 
-  public MapItemViewModel(Context context, Item item) {
+  public MapItemViewModel(Context context, Item item, int position) {
     mContext = context;
     mItem = item;
+    mPosition = position;
   }
 
   public String getItemName() {
@@ -37,6 +39,10 @@ public class MapItemViewModel extends BaseObservable{
   public String getPrice() {
     return mContext.getString(R.string.retail_rice, mItem.getCurrency(),
         mItem.getPrice());
+  }
+
+  public String getPosition(){
+    return String.valueOf(mPosition  + 1);
   }
 
   @BindingAdapter({"bind:imageUrl","bind:placeHolderDrawable", "bind:errorDrawable" })
@@ -59,8 +65,9 @@ public class MapItemViewModel extends BaseObservable{
     return null;
   }
 
-  public void setItem(Item item) {
+  public void setItemAndPosition(Item item, int position) {
     this.mItem = item;
+    this.mPosition = position;
     notifyChange();
   }
 }

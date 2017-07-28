@@ -9,6 +9,7 @@
   <color name="whiteShade">#F2F2F2</color>
   <color name="whiteLightShade">#E7E7E7</color>
   <color name="white">#FFFFFF</color>
+  <color name="white_transparent">#66FFFFFF</color>
   <color name="blueTheme">#003468</color>
   <color name="blackShade">#292929</color>
   <color name="blackLightShade">#BFBFBF</color>

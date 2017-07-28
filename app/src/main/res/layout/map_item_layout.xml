@@ -1,6 +1,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  xmlns:app="http://schemas.android.com/apk/res-auto">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools">
 
   <data>
     <variable
@@ -33,45 +33,45 @@
         tools:imageUrl="@{mapItemViewModel.mediaImageUrl}"
         tools:placeHolderDrawable="@{@drawable/image_placeholder}"/>
 
-        <TextView
-          android:id="@+id/item_name"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:ellipsize="end"
-          android:gravity="center_vertical"
-          android:minLines="2"
-          android:maxLines="2"
-          android:layout_gravity="center_vertical"
-          android:layout_margin="@dimen/padding_small"
-          android:text="@{mapItemViewModel.itemName}"
-          android:textColor="@color/textColorPrimary"
-          android:transitionName="titleTransition"
-          android:layout_weight="1"
-          android:textStyle="bold"
-          android:textSize="@dimen/textsize_medium"
-          tools:text="Windsor Heritage"/>
+      <TextView
+        android:id="@+id/item_name"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_margin="@dimen/padding_small"
+        android:layout_gravity="center_vertical"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="2"
+        android:minLines="2"
+        android:text="@{mapItemViewModel.itemName}"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="@dimen/textsize_medium"
+        android:transitionName="titleTransition"
+        tools:text="Windsor Heritage"/>
 
       <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/padding_micro"
         android:gravity="center_vertical"
-        android:layout_marginBottom="@dimen/padding_micro">
+        android:orientation="horizontal">
 
         <ImageView
           android:layout_width="@dimen/padding_small"
           android:layout_height="@dimen/padding_small"
-          android:src="@drawable/ic_price_small"
           android:layout_marginStart="@dimen/padding_small"
-          android:layout_marginEnd="@dimen/padding_small"/>
+          android:layout_marginEnd="@dimen/padding_small"
+          android:src="@drawable/ic_price_small"/>
 
 
         <TextView
           android:id="@+id/price"
           style="@style/Text.Tiny.Bold"
-          android:layout_weight="2"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:layout_weight="2"
           android:text="@{mapItemViewModel.price}"
           android:textColor="@color/greenLight"
           tools:text="123 EUR"/>
@@ -81,24 +81,24 @@
       <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/padding_micro"
         android:gravity="center_vertical"
-        android:layout_marginBottom="@dimen/padding_micro">
+        android:orientation="horizontal">
 
         <ImageView
           android:layout_width="@dimen/padding_medium"
           android:layout_height="@dimen/padding_medium"
-          android:src="@drawable/ic_place_black_24dp"
           android:layout_marginStart="@dimen/padding_small"
-          android:layout_marginEnd="@dimen/padding_small"/>
+          android:layout_marginEnd="@dimen/padding_small"
+          android:src="@drawable/ic_place_black_24dp"/>
 
         <TextView
           android:id="@+id/location"
           style="@style/Text.Tiny"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:ellipsize="end"
           android:layout_weight="2"
+          android:ellipsize="end"
           android:maxLines="2"
           android:text="@{mapItemViewModel.locationName}"
           tools:text="Walter Street"/>
@@ -106,15 +106,25 @@
 
       </LinearLayout>
 
+    </LinearLayout>
 
-      </LinearLayout>
-
-    <ImageView
-      android:id="@+id/number"
+    <LinearLayout
       android:layout_width="24dp"
       android:layout_height="24dp"
       app:layout_anchor="@id/container"
-      app:layout_anchorGravity="top|center"/>
+      app:layout_anchorGravity="top|center"
+      android:background="@drawable/rounded_background_white">
+      <TextView
+        android:id="@+id/number"
+        style="@style/Text.Large.Bold"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@{mapItemViewModel.position}"
+        android:textColor="@color/redDark"
+        tools:text="1"/>
+
+    </LinearLayout>
 
   </android.support.v7.widget.CardView>
 

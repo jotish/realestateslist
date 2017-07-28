@@ -22,6 +22,7 @@ import com.jotish.realestate.adapter.MapItemAdapter;
 import com.jotish.realestate.data.Item;
 import com.jotish.realestate.databinding.FragmentItemMapBinding;
 import com.jotish.realestate.transitions.ScaleDownImageTransition;
+import com.jotish.realestate.ui.HorizontalRecyclerViewScrollListener;
 import com.jotish.realestate.ui.maps.MapBitmapCache;
 import com.jotish.realestate.ui.maps.PulseOverlayLayout;
 import com.jotish.realestate.viewmodel.FragmentMapViewModel;
@@ -29,7 +30,8 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-public class ItemsMapFragment extends Fragment implements OnMapReadyCallback, Observer {
+public class ItemsMapFragment extends Fragment implements OnMapReadyCallback, Observer,
+    HorizontalRecyclerViewScrollListener.OnItemCoverListener {
 
   private FragmentMapViewModel mItemMapViewModel;
   private FragmentItemMapBinding mFragmentItemMapBinding;
@@ -76,6 +78,7 @@ public class ItemsMapFragment extends Fragment implements OnMapReadyCallback, Ob
     MapItemAdapter adapter = new MapItemAdapter();
     listRecyler.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
     listRecyler.setAdapter(adapter);
+    listRecyler.addOnScrollListener(new HorizontalRecyclerViewScrollListener(this));
   }
 
   private void setupMapFragment() {
@@ -123,5 +126,10 @@ public class ItemsMapFragment extends Fragment implements OnMapReadyCallback, Ob
       setupMapLayout(mFragmentItemMapBinding.mapOverlayLayout,
           mItemMapViewModel.provideLatLngBoundsForAllPlaces(), items);
     }
+  }
+
+  @Override
+  public void onItemCover(final int position) {
+    mFragmentItemMapBinding.mapOverlayLayout.showMarker(position);
   }
 }
